@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Products</title>
+</head>
+<body>
+<h1>Products</h1>
+<form method="get">
+{% for attr in attributes %}
+    <label>
+        <input type="checkbox" name="attribute" value="{{ attr.id }}" {% if attr.id in selected %}checked{% endif %}>
+        {{ attr.name }}
+    </label>
+{% endfor %}
+    <button type="submit">Filter</button>
+</form>
+<ul>
+{% for product in products %}
+    <li>{{ product.name }}</li>
+{% empty %}
+    <li>No products found.</li>
+{% endfor %}
+</ul>
+</body>
+</html>
