@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ page.title }}</title>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+</head>
+<body>
+<h1>{{ page.title }}</h1>
+<div id="builder">
+</div>
+<script>
+const container = document.getElementById('builder');
+const initial = {{ page.schema|default:'{}'|safe }};
+for (const field of (initial.fields || [])) {
+    const el = document.createElement('div');
+    el.textContent = field.label;
+    el.className = 'field';
+    container.appendChild(el);
+}
+new Sortable(container, { animation: 150 });
+</script>
+</body>
+</html>
